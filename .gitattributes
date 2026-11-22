@@ -1,0 +1,13 @@
+* text=auto eol=lf
+
+# Windows 上检出的脚本也保持 LF，避免上传到 Linux 后执行报错
+*.sh        text eol=lf
+deploy/*    text eol=lf
+
+# 二进制资源不要做换行转换
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.mp4  binary
+*.webp binary
+*.gif  binary

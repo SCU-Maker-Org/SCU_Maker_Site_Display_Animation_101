@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 1536" width="1536" height="1536">
+  <!-- 用工具猫（矢量线稿，风格对齐）：右手握螺丝刀，台面放着木块与扳手 -->
+  <g fill="#ffffff" stroke="#12172f" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- 工作台 -->
+    <path d="M 300 1180 L 1236 1180" fill="none" stroke-width="12"/>
+
+    <!-- 尾巴 -->
+    <path d="M 620 1030 C 500 1085, 420 1020, 426 920 C 430 852, 470 818, 502 834 C 534 850, 542 888, 516 914"
+          fill="none" stroke-width="26"/>
+
+
+
+    <!-- 身体 -->
+    <path d="M 650 810 C 560 870, 545 1010, 595 1080 C 635 1136, 720 1150, 790 1150 C 870 1150, 950 1126, 985 1060 C 1020 990, 995 868, 906 810" />
+
+
+
+    <!-- 右手臂 -->
+    <path d="M 900 910 C 965 880, 1020 840, 1036 800" fill="none" stroke-width="26"/>
+
+
+
+    <!-- 耳朵 -->
+    <path d="M 618 480 L 560 306 L 722 410" />
+    <path d="M 918 480 L 976 306 L 814 410" />
+    <path d="M 646 434 C 648 388, 676 372, 704 398" fill="none" stroke-width="9"/>
+    <path d="M 890 434 C 888 388, 860 372, 832 398" fill="none" stroke-width="9"/>
+
+    <!-- 头 -->
+    <path d="M 768 408 C 618 408, 510 510, 510 652 C 510 802, 628 888, 768 888 C 908 888, 1026 802, 1026 652 C 1026 510, 918 408, 768 408 Z" />
+
+    <!-- 圆眼睛 -->
+    <ellipse cx="676" cy="636" rx="30" ry="34" fill="#12172f" stroke="none"/>
+    <ellipse cx="860" cy="636" rx="30" ry="34" fill="#12172f" stroke="none"/>
+    <circle cx="686" cy="624" r="9" fill="#ffffff" stroke="none"/>
+    <circle cx="870" cy="624" r="9" fill="#ffffff" stroke="none"/>
+
+    <!-- 鼻子 + 认真的小嘴 -->
+    <path d="M 750 700 C 760 692, 776 692, 786 700 C 780 714, 756 714, 750 700 Z" fill="#12172f" stroke="none"/>
+    <path d="M 744 730 C 754 742, 764 742, 768 732 C 772 742, 782 742, 792 730" fill="none" stroke-width="11"/>
+
+    <!-- 胡须 -->
+    <path d="M 556 674 L 430 646" fill="none" stroke-width="9"/>
+    <path d="M 552 710 L 424 712" fill="none" stroke-width="9"/>
+    <path d="M 562 746 L 440 782" fill="none" stroke-width="9"/>
+    <path d="M 980 674 L 1106 646" fill="none" stroke-width="9"/>
+    <path d="M 984 710 L 1112 712" fill="none" stroke-width="9"/>
+    <path d="M 974 746 L 1096 782" fill="none" stroke-width="9"/>
+
+    <!-- 台面上的木块 -->
+    <rect x="690" y="1098" width="120" height="46" rx="6" fill="#f1ecdf" stroke-width="9"/>
+
+    <!-- 台面上的螺丝 -->
+    <ellipse cx="880" cy="1148" rx="26" ry="10" fill="#12172f" stroke="none"/>
+    <path d="M 874 1148 L 874 1180 L 886 1180 L 886 1148" fill="none" stroke-width="8"/>
+
+    <!-- 台面上的扳手 -->
+    <g transform="translate(1080 1128) rotate(-12)">
+      <path d="M -96 0 L -18 0 L -12 -18 L 26 -22 L 32 -8 L 12 -3 L 12 3 L 32 8 L 26 22 L -12 18 L -18 0"
+            fill="none" stroke-width="10"/>
+      <path d="M -96 -8 L -96 8" fill="none" stroke-width="10"/>
+    </g>
+    <!-- 螺丝刀：握在右爪里，刀杆穿过爪子 -->
+    <g transform="rotate(-16 1040 778)">
+      <rect x="1018" y="548" width="46" height="196" rx="23" fill="#f7bd00" stroke-width="12"/>
+      <path d="M 1032 744 L 1050 744 L 1050 900 L 1032 900 Z" fill="#ffffff" stroke-width="10"/>
+      <path d="M 1034 900 L 1048 900 L 1043 928 L 1039 928 Z" fill="#12172f" stroke="none"/>
+    </g>
+
+    <!-- 右手爪（压在螺丝刀上） -->
+    <ellipse cx="1040" cy="782" rx="44" ry="34"/>
+  </g>
+</svg>

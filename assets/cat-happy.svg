@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 1536" width="1536" height="1536">
+  <!-- 开心猫（矢量线稿，风格对齐：粗墨线 + 白填充 + 纸色） -->
+  <g fill="#ffffff" stroke="#12172f" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- 尾巴 -->
+    <path d="M 620 1010 C 500 1070, 415 1005, 420 900 C 424 830, 468 796, 500 812 C 532 828, 540 868, 514 894"
+          fill="none" stroke-width="26"/>
+
+    <!-- 前面的两只小爪子 -->
+    <ellipse cx="676" cy="1122" rx="48" ry="30"/>
+    <ellipse cx="860" cy="1122" rx="48" ry="30"/>
+
+    <!-- 身体 -->
+    <path d="M 650 800 C 560 860, 545 1000, 595 1070 C 635 1126, 720 1140, 790 1140 C 870 1140, 950 1116, 985 1050 C 1020 980, 995 858, 906 800" />
+
+    <!-- 耳朵 -->
+    <path d="M 618 470 L 560 296 L 722 400" />
+    <path d="M 918 470 L 976 296 L 814 400" />
+    <path d="M 646 424 C 648 378, 676 362, 704 388" fill="none" stroke-width="9"/>
+    <path d="M 890 424 C 888 378, 860 362, 832 388" fill="none" stroke-width="9"/>
+
+    <!-- 头 -->
+    <path d="M 768 398 C 618 398, 510 500, 510 642 C 510 792, 628 878, 768 878 C 908 878, 1026 792, 1026 642 C 1026 500, 918 398, 768 398 Z" />
+
+    <!-- 腮红 -->
+    <ellipse cx="636" cy="694" rx="48" ry="25" fill="#f6c9c9" stroke="none"/>
+    <ellipse cx="900" cy="694" rx="48" ry="25" fill="#f6c9c9" stroke="none"/>
+
+    <!-- 弯弯的笑眼 -->
+    <path d="M 652 642 C 670 604, 700 604, 718 642" fill="none" stroke-width="17"/>
+    <path d="M 818 642 C 836 604, 866 604, 884 642" fill="none" stroke-width="17"/>
+
+    <!-- 鼻子 + 嘴 -->
+    <path d="M 750 694 C 760 686, 776 686, 786 694 C 780 708, 756 708, 750 694 Z" fill="#12172f" stroke="none"/>
+    <path d="M 734 724 C 748 748, 762 748, 768 730 C 774 748, 788 748, 802 724" fill="none" stroke-width="12"/>
+    <path d="M 756 756 C 762 766, 774 766, 780 756" fill="none" stroke-width="10"/>
+
+    <!-- 胡须 -->
+    <path d="M 556 664 L 430 636" fill="none" stroke-width="9"/>
+    <path d="M 552 700 L 424 702" fill="none" stroke-width="9"/>
+    <path d="M 562 736 L 440 772" fill="none" stroke-width="9"/>
+    <path d="M 980 664 L 1106 636" fill="none" stroke-width="9"/>
+    <path d="M 984 700 L 1112 702" fill="none" stroke-width="9"/>
+    <path d="M 974 736 L 1096 772" fill="none" stroke-width="9"/>
+
+
+    <!-- 星星 -->
+    <path d="M 404 442 L 416 482 L 456 494 L 416 506 L 404 546 L 392 506 L 352 494 L 392 482 Z" fill="#f7bd00" stroke-width="8"/>
+    <path d="M 1108 386 L 1118 418 L 1150 428 L 1118 438 L 1108 470 L 1098 438 L 1066 428 L 1098 418 Z" fill="#f7bd00" stroke-width="8"/>
+    <path d="M 1016 246 L 1024 270 L 1048 278 L 1024 286 L 1016 310 L 1008 286 L 984 278 L 1008 270 Z" fill="#f7bd00" stroke-width="6"/>
+    <path d="M 350 300 L 357 320 L 377 327 L 357 334 L 350 354 L 343 334 L 323 327 L 343 320 Z" fill="#f7bd00" stroke-width="5"/>
+  </g>
+</svg>

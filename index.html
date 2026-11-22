@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SCU Maker 协会 · 展示墙</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- 顶部：协会 Logo + 播放进度 -->
+  <header class="topbar">
+    <div class="brand">
+      <img class="brand-emblem" id="brandEmblem" src="校徽+院徽（高清+抠图版）.png" alt="校徽 院徽">
+      <img class="brand-logo" id="brandLogo" src="SCU Maker's Logo.png" alt="SCU Maker">
+    </div>
+    <div class="segments" id="segments" aria-label="播放进度"></div>
+    <div class="topbar-actions">
+      <span class="clock" id="clock">--:--</span>
+      <button class="icon-btn" id="btnToggle" title="暂停 / 继续（空格）" aria-label="暂停或继续">
+        <svg viewBox="0 0 24 24" class="ic-pause"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+        <svg viewBox="0 0 24 24" class="ic-play"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.2-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+      </button>
+      <button class="icon-btn" id="btnFull" title="全屏（F）" aria-label="全屏">
+        <svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 舞台：所有页面横向排列，自动循环播放 -->
+  <main class="stage" id="stage" aria-live="polite"></main>
+
+  <!-- 左右切换热区 -->
+  <button class="edge prev" id="btnPrev" aria-label="上一页"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <button class="edge next" id="btnNext" aria-label="下一页"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+  <!-- 底部：页码 + 当前标题 -->
+  <footer class="bottombar">
+    <div class="pagecount"><b id="curNo">01</b><span>/</span><span id="totalNo">04</span></div>
+    <div class="dots" id="dots" aria-label="页面导航"></div>
+    <div class="now-title" id="nowTitle"></div>
+  </footer>
+
+  <!-- 所有文字、图片、时长都在 js/config.js 里改 -->
+  <script src="js/config.js"></script>
+  <script src="js/intro.js"></script>
+  <script src="js/poster.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
