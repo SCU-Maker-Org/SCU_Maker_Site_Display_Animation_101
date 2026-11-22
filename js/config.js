@@ -19,6 +19,7 @@ window.CONFIG = {
 
     logoImage: "SCU Maker's Logo.png",   // 协会 Logo（与 index.html 同目录）
     emblemImage: '校徽+院徽（高清+抠图版）.png',  // 左上角排在前面的校徽 + 院徽
+    posterPlaceholder: '模拟图片.png',   // 活动没配 image 时，右侧海报格显示的默认模拟图
     brandBlue: '#4667ad',         // 院徽主蓝
     brandGold: '#f7bd00',         // 院徽金
   },

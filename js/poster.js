@@ -53,6 +53,9 @@
    * @param {number} index 第几个活动（0 起，中英两页共用同一个编号）
    * @param {string} lang  'zh' | 'en'
    */
+  // 未提供活动图片时使用的默认模拟图（可在 config.settings.posterPlaceholder 覆盖）
+  var DEFAULT_POSTER = (window.CONFIG && window.CONFIG.settings && window.CONFIG.settings.posterPlaceholder) || '模拟图片.png';
+
   function PosterSlide(p, index, lang) {
     var common = p || {};
     var d = Object.assign({}, common, (common[lang] || {}));
@@ -88,12 +91,11 @@
         }).join('') + '</ul>'
       : '';
 
-    var photo = d.image ? '<img class="photo" src="' + esc(d.image) + '" alt="">' : '';
-
-    // 标志类图片（协会 Logo / 标识）：用 contain 完整显示，不裁切
-    //   在 config.js 里给活动加 imageLogo: true 即可
-    var isLogoImg = !!(p.imageLogo || d.imageLogo || d.imageMode === 'logo');
-    var logoMode = isLogoImg ? (p.imagePad ? 'pad' : '1') : '';
+    // 是否「换成活动照片」：
+    //   - 有图时，那张图就是这一格的完整海报，铺满整格，不再叠加任何模拟背景；
+    //   - 没有图时，显示默认模拟图「模拟图片.png」。
+    var hasPoster = !!d.image;
+    var isLogoImg = hasPoster && !!(p.imageLogo || d.imageLogo || d.imageMode === 'logo');
 
     var qr = d.qr
       ? '<div class="qr-card"><div class="qr-box"><img src="' + esc(d.qr) + '" alt="QR"></div><p>' + esc(d.qrText || '') + '</p></div>'
@@ -135,14 +137,14 @@
             chips +
           '</div>' +
           '<div class="poster-side reveal">' +
-            '<div class="p-visual"' + (logoMode ? ' data-logo="' + logoMode + '"' : '') + '>' +
-              '<div class="grid-deco"></div>' +
-              '<div class="arc a1"></div>' +
-              '<div class="arc a2"></div>' +
-              '<img class="mark" src="' + esc((window.CONFIG && window.CONFIG.settings && window.CONFIG.settings.logoImage) || "SCU Maker's Logo.png") + '" alt="">' +
-              '<div class="vtag">SCU MAKER</div>' +
-              '<div class="vno">' + no + '</div>' +
-              (photo ? photo : '<div class="hint">' + (isEn ? 'EVENT POSTER · replace with your photo' : '活动海报 · 可替换为图片') + '</div>') +
+            '<div class="p-visual has-poster' + (isLogoImg ? ' is-logo' : '') + '">' +
+              // 始终只有一张图：
+              //   有自定义图片 → 用活动自己的；
+              //   没有 → 用默认模拟图「模拟图片.png」。
+              // 不再叠加网格 / 弧线 / Logo 淡影 / 角标 / 编号等 DOM 装饰。
+              '<img class="poster-img' + (hasPoster ? '' : ' is-placeholder') + '" ' +
+                'src="' + esc(hasPoster ? d.image : DEFAULT_POSTER) + '" ' +
+                'alt="' + esc(d.title || '') + '">' +
             '</div>' +
             qr +
           '</div>' +

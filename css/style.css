@@ -663,13 +663,7 @@ body:hover .edge { opacity: 0.55; }
   box-shadow: 0 26px 60px rgba(46, 74, 134, 0.22), inset 0 0 0 1px rgba(70, 103, 173, 0.16);
   isolation: isolate;
 }
-.p-visual > img.photo {
-  position: absolute;
-  inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  z-index: 2;
-}
+/* 有活动海报图时，底色渐变不需要（图片本身铺满） */
 .p-visual .grid-deco {
   position: absolute;
   inset: 0;
@@ -980,34 +974,46 @@ body.lowfx .cut-bg .ghost { opacity: 0.03; }
   .intro-slide.after .logo-final::after { display: none; }
 }
 /* ==========================================================================
-   海报主视觉：两种放图方式
-   1) 默认（活动实拍照片）  object-fit: cover 铺满，会裁切
-   2) .logo-image 模式（协会标志 / 报名海报） object-fit: contain 完整显示不裁切
-      config.js 里把该活动的 image 指向标志图，并在 style.css 里加 class 即可，
-      这里默认对带有 data-logo="1" 的视觉区生效。
+   海报主视觉（.p-visual）：这是「放活动海报图片」的那一格
+   ----------------------------------------------------------------------------
+   · 有图（config 里配了 image）：这张图就是完整海报，铺满整格，
+     原本的模拟背景（网格 / 圆弧 / Logo 淡影 / SCU MAKER 角标 / 编号）
+     全部不渲染，不会出现“图盖在模拟图上”的叠层。
+   · 无图：显示默认模拟图「模拟图片.png」（settings.posterPlaceholder 可改）。
    ========================================================================== */
 
-/* 已经是“白底/米白底”的成品图：铺满整个视觉区，不再加 padding */
-.p-visual[data-logo="1"] > img.photo {
+/* 有图时：去掉底色渐变，只保留圆角与裁切 */
+.p-visual.has-poster {
+  background: #fff;
+}
+
+/* 铺满整格的活动海报图片 */
+.p-visual > img.poster-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* 裁切铺满（活动实拍照片用） */
+  object-position: center;
+  z-index: 2;
+  display: block;
+}
+
+/* 协会标志 / 报名海报这类“不能裁”的图：完整显示，四周留白由图片自己提供 */
+.p-visual.is-logo > img.poster-img {
   object-fit: contain;
   padding: 0;
-  z-index: 3;
 }
 
-/* 透明底 PNG / 需要留白的标志：额外加 padding（config 里写 imagePad: true） */
-.p-visual[data-logo="pad"] > img.photo {
-  object-fit: contain;
+/* 默认模拟图本身就是 618×540 的成品，直接铺满 */
+.p-visual > img.poster-img.is-placeholder {
+  object-fit: cover;
+}
+
+/* 透明底 PNG 需要额外留白时，在 config 里写 imagePad: true */
+.p-visual.is-logo.pad > img.poster-img {
   padding: 9% 8%;
-  z-index: 3;
 }
-
-/* 标志类图片时，淡化背景装饰，让标志成为主角 */
-.p-visual[data-logo="1"] .grid-deco { opacity: 0.45; }
-.p-visual[data-logo="1"] .mark { opacity: 0.05; }
-.p-visual[data-logo="1"] .arc { opacity: 0.5; }
-
-/* 数字角标在标志图上会更清晰 */
-.p-visual[data-logo="1"] > .hint { display: none; }
 
 /* ==========================================================================
    正在进行中的活动（config.js 里写 ongoing: true）
