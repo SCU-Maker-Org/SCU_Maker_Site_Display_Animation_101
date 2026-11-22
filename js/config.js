@@ -99,7 +99,12 @@ window.CONFIG = {
         time: '',
         place: '“i创街”智能科学创新与开源硬件工坊 & 二基楼B101',
         description: '',
-        highlights: ['物料提供', '教师指导', '竞赛', '长期开展'],
+        highlights: [
+          '物料提供', '教师指导', '竞赛', '长期开展',
+          '无人机', '智能车', '船模',
+          'ESP32', 'Arduino', '树莓派', '香橙派',
+          'DIY', '焊接', '3D打印'
+        ],
         entry: '向全体四川大学师生开放',
         qrText: '向全体四川大学师生开放'
       },
@@ -113,7 +118,12 @@ window.CONFIG = {
         time: '',
         place: '',
         description: '',
-        highlights: ['Materials Provided', 'Teacher Guidance', 'Competitions', 'Long-term Operation'],
+        highlights: [
+          'Materials Provided', 'Teacher Guidance', 'Competitions', 'Long-term Operation',
+          'Drones', 'Smart Cars', 'Model Boats',
+          'ESP32', 'Arduino', 'Raspberry Pi', 'Orange Pi',
+          'DIY', 'Soldering', '3D Printing'
+        ],
         entry: 'Open to all faculty and students of Sichuan University',
         qrText: 'Open to all faculty and students of Sichuan University'
       }
