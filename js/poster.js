@@ -101,6 +101,15 @@
 
     el.innerHTML =
       '<div class="poster' + (isEn ? ' lang-en' : '') + (ongoing ? ' is-ongoing' : '') + '" data-no="' + no + '">' +
+        // 黄色俯视波浪：整页一层，正中一个波源，涟漪一圈圈向外荡开。
+        // 放在 .poster 的最底层（z-index 0），所有文字 / 海报图 / 信息栏都盖在它上面。
+        (ongoing
+          ? '<div class="p-live-waves" aria-hidden="true">' +
+              '<div class="ripple">' +
+                '<i></i><i></i><i></i>' +
+              '</div>' +
+            '</div>'
+          : '') +
         (ongoing ? '<div class="p-live-stream" aria-hidden="true"></div>' : '') +
         '<div class="poster-grid">' +
           '<div class="poster-main">' +

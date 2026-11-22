@@ -493,7 +493,7 @@ body:hover .edge { opacity: 0.55; }
   color: transparent;
   -webkit-text-stroke: 1px rgba(70, 103, 173, 0.18);
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 }
 .poster::after {
   content: "";
@@ -501,7 +501,7 @@ body:hover .edge { opacity: 0.55; }
   left: 0; right: 0; top: 0;
   height: 3px;
   background: linear-gradient(90deg, var(--accent), rgba(70, 103, 173, 0.25) 55%, transparent);
-  z-index: 1;
+  z-index: 2;
 }
 
 .poster-grid {
@@ -1275,7 +1275,7 @@ body.ongoing-mode .poster-slide .poster {
 }
 .live-word {
   font-weight: 800;
-  color: color-mix(in srgb, var(--accent) 45%, #b1281c);
+  color: color-mix(in srgb, var(--accent) 30%, #b1281c);
   letter-spacing: 0.08em;
   background: linear-gradient(100deg,
     color-mix(in srgb, var(--accent) 45%, #b1281c) 0%,
@@ -1303,6 +1303,89 @@ body.ongoing-mode .poster-slide .poster {
 @keyframes liveShine {
   from { background-position: 120% 0; }
   to   { background-position: -100% 0; }
+}
+
+/* ---------- 7) 黄色俯视波浪：画面正中央一个波源，3 圈波纹缓慢向外荡开 ----------
+   俯视（bird's-eye）看水面的做法：
+     · 整页一层容器，正中一个波源；波源处放 3 圈同心波纹（.ripple i）
+     · 每圈波纹从波源处很小、很淡开始，一边向外放大一边变亮，最后淡出
+     · 3 圈相位均匀错开（各差 1/3 周期）→ 水波一圈接一圈从中心往外扩散
+     · 波纹厚实：用“宽环 + 内暗外亮”的径向渐变做出有厚度的黄色波带
+     · ★ 这一层在 .poster 底层的背景里（不在文字上面），所有文字都盖在波浪之上 */
+.p-live-waves {
+  position: absolute;
+  inset: 0;                   /* 整页：从顶栏到画面底边 */
+  z-index: 0;                 /* ★ 只在背景层：低于网格 / 正文 / 海报图 / 信息栏 */
+  overflow: hidden;
+  pointer-events: none;
+}
+/* 波源：画面正中央的一个点，波纹从这里一圈圈荡出去 */
+.ripple {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  /* 半径最大到 150vmax，任何宽高比都能铺满整屏 */
+  --size: min(300vmax, 3000px);
+  /* 一圈波从中心荡到出屏要 22 秒（越慢越舒缓） */
+  --dur: 22s;
+  /* 波峰正片：更宽的黄色波带，内暗 → 峰亮 → 外柔化淡出 */
+  --wave-band: radial-gradient(circle closest-side,
+      transparent 0 18%,
+      color-mix(in srgb, var(--accent) 5%, transparent) 24%,
+      color-mix(in srgb, var(--accent) 28%, transparent) 34%,
+      color-mix(in srgb, var(--accent) 34%, transparent) 46%,
+      color-mix(in srgb, var(--accent) 18%, transparent) 56%,
+      transparent 64%);
+}
+/* 每一圈波纹 */
+.ripple i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--size);
+  height: var(--size);
+  margin: calc(var(--size) / -2) 0 0 calc(var(--size) / -2);
+  border-radius: 50%;
+  background: var(--wave-band);
+  opacity: 0;
+  /* 从中心推出 → 放大 → 淡出，循环（linear 让外圈速度匀实，不会忽快忽慢） */
+  animation: rippleOut var(--dur) linear infinite;
+  animation-delay: var(--delay, 0s);
+  will-change: transform, opacity;
+}
+@keyframes rippleOut {
+  0%   { transform: scale(0.05); opacity: 0; }
+  8%   { opacity: 1; }
+  85%  { opacity: 0.7; }
+  100% { transform: scale(1);    opacity: 0; }
+}
+/* 3 圈波纹：相位均匀错开 1/3 周期，波源处始终有波在荡 */
+.ripple i:nth-child(1) { --delay: 0s; }
+.ripple i:nth-child(2) { --delay: calc(var(--dur) * -0.3333); }
+.ripple i:nth-child(3) { --delay: calc(var(--dur) * -0.6667); }
+
+/* ---------- 低配模式：定格成静止的波纹 ---------- */
+body.lowfx .ripple i,
+body.lowfx .ripple i:nth-child(n) {
+  animation: none;
+  opacity: 0.45;
+  transform: scale(1);
+}
+
+/* 顶部光带同步改成“波浪形” */
+.poster.is-ongoing .p-live-stream {
+  height: 6px;
+}
+.poster.is-ongoing .p-live-stream::before {
+  top: 0;
+  height: 100%;
+  animation: liveStream 3.6s linear infinite, waveRipple 2.2s ease-in-out infinite alternate;
+}
+@keyframes waveRipple {
+  from { clip-path: polygon(0 0, 100% 0, 100% 60%, 74% 100%, 62% 42%, 50% 100%, 38% 42%, 26% 100%, 14% 42%, 0 100%); }
+  to   { clip-path: polygon(0 0, 100% 0, 100% 100%, 74% 42%, 62% 100%, 50% 42%, 38% 100%, 26% 42%, 14% 100%, 0 42%); }
 }
 
 /* ---------- 低配模式 / 减少动态效果：保留静止发光，关掉大面积动画 ---------- */
@@ -1346,5 +1429,11 @@ body.lowfx.ongoing-mode .poster-slide .poster {
   .poster.is-ongoing .info-item.time .info-icon,
   body.ongoing-mode .poster-slide .poster {
     animation: none;
+  }
+  .ripple i,
+  .ripple i:nth-child(n) {
+    animation: none;
+    opacity: 0.35;
+    transform: scale(1);
   }
 }
