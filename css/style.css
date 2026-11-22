@@ -1016,18 +1016,38 @@ body.lowfx .cut-bg .ghost { opacity: 0.03; }
 }
 
 /* ==========================================================================
-   正在进行中的活动（config.js 里写 ongoing: true）
+   正在进行中的活动
+   ----------------------------------------------------------------------------
+   「是否进行中」由 js/poster.js 的 isOngoingNow() 按 date + time 自动判定，
+   不再需要手写 ongoing: true。判定结果只体现为 .poster 上的 .is-ongoing 类：
+     · 下面这些特效元素节点常驻 DOM，默认隐藏；
+     · 只有 .poster.is-ongoing 时才显示并开始动画 → 运行中跨过活动开始 / 结束
+       时刻，JS 只需要切换一个类，徽标与特效就会自动出现 / 消失。
    只为「当前这一页」播放动画：离开该页后 JS 会去掉 body.ongoing-mode，
    呼吸光晕、脉冲等会一起停下，循环播放时不额外占用 GPU（树莓派上也稳）。
    特效清单：
      1) 左上角实时徽标「● 正在进行中 / NOW ON」——扩散光环 + 旋转雷达
-     2) 顶部强调色流光线（海报最上沿一道光来回扫过）
+     2) 顶部波浪形光带
      3) 整页极淡的氛围呼吸光，从边缘向中心缓慢明暗
      4) 右侧海报区：外发光 + 4 个呼吸定位角 + 光束扫过海报
-     5) 活动序号后面的同心扩散环（像信号发射）+ 徽标内的实时圆点
-     6) 底部时间栏换成实时图标 + 脉冲圆点（若没有时间则只显示图标）
+     5) 画面正中的黄色俯视波浪（3 圈波纹向外扩散）
+     6) 底部时间栏换成实时图标 + 脉冲圆点
    低配模式（body.lowfx）只保留静止的发光与旋转圆点，不做大面积动画。
    ========================================================================== */
+
+/* ---------- 默认隐藏：只有进行中的海报才显示这些特效 ---------- */
+.poster:not(.is-ongoing) .p-live,
+.poster:not(.is-ongoing) .p-live-waves,
+.poster:not(.is-ongoing) .p-live-stream,
+.poster:not(.is-ongoing) .live-word,
+.poster:not(.is-ongoing) .ic-live,
+.poster:not(.is-ongoing) .info-item.time small {
+  display: none;
+}
+.poster.is-ongoing .ic-clock,
+.poster.is-ongoing .plain-time {
+  display: none;
+}
 
 /* ---------- 1) 实时徽标 ---------- */
 .poster .p-live {

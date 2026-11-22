@@ -67,9 +67,12 @@ window.CONFIG = {
    * 3) 活动海报：每个活动 = 中文页 + 英文页
    * ------------------------------------------------------------------------
    *  公共字段（两种语言共用）：
-   *      date / weekday / weekdayEn / color / duration / image / qr / ongoing
-   *      ongoing: true = 该活动「正在进行中」，海报会加上进行中徽标、流光、
-   *               呼吸光晕等特效（见 css/style.css 的“进行中”一节）。
+   *      date / weekday / weekdayEn / color / duration / image / qr
+   *  「是否正在进行中」全自动判定，不用手写标记：
+   *      · 活动日期当天，且在 time 时段内 → 自动显示进行中徽标 + 俯视波浪特效
+   *      · 只有日期没写时段 → 当天 0:00–24:00 都算进行中
+   *      · date 留空的长期活动 → 永远不算进行中
+   *      · 需要临时强制时，再写 ongoing: true / false 覆盖自动判定
    *  zh / en 里各自放这一种语言的全部文字：
    *      tag（左上角标签）, category（同行小字）, title,
    *      speaker, speakerTitle, time, place, description,
@@ -133,7 +136,9 @@ window.CONFIG = {
       date: '2026.11.22',
       weekday: '周日',
       weekdayEn: 'Sun',
-      ongoing: true,            // ★ 正在进行中：海报带「进行中」徽标 + 流光 / 光晕特效
+      // 【自动判定】是否「正在进行中」由 date + time 自动算，不用写 ongoing: true。
+      //   时段内（2026-11-22 19:00–21:00）自动显示进行中徽标与波浪特效，
+      //   开始前 / 结束后自动隐藏。需要临时强制时再写 ongoing: true / false。
       color: '#7aa8e8',
       duration: 10000,
       image: '',
